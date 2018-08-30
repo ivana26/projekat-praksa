@@ -1,0 +1,31 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "city",
+            "otherEntityName": "city",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldName": "address",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        }
+    ],
+    "changelogDate": "20180830103011",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "client",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}
