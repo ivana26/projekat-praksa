@@ -25,6 +25,9 @@ public class City implements Serializable {
     @Column(name = "postal_code")
     private Integer postalCode;
 
+    @Column(name = "zip_code")
+    private Integer zipCode;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -59,6 +62,19 @@ public class City implements Serializable {
     public void setPostalCode(Integer postalCode) {
         this.postalCode = postalCode;
     }
+
+    public Integer getZipCode() {
+        return zipCode;
+    }
+
+    public City zipCode(Integer zipCode) {
+        this.zipCode = zipCode;
+        return this;
+    }
+
+    public void setZipCode(Integer zipCode) {
+        this.zipCode = zipCode;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -87,6 +103,7 @@ public class City implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", postalCode=" + getPostalCode() +
+            ", zipCode=" + getZipCode() +
             "}";
     }
 }

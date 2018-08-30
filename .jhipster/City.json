@@ -11,6 +11,11 @@
             "fieldName": "postalCode",
             "fieldType": "Integer",
             "fieldValidateRules": []
+        },
+        {
+            "fieldName": "zipCode",
+            "fieldType": "Integer",
+            "fieldValidateRules": []
         }
     ],
     "changelogDate": "20180830101308",
