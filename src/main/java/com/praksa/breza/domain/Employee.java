@@ -1,7 +1,9 @@
 package com.praksa.breza.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -19,11 +21,18 @@ public class Employee implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @NotNull
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
 
-    @Column(name = "department")
-    private String department;
+    @NotNull
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
+
+    @ManyToOne(optional = false)
+    @NotNull
+    @JsonIgnoreProperties("")
+    private Position position;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -34,30 +43,43 @@ public class Employee implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public Employee name(String name) {
-        this.name = name;
+    public Employee firstName(String firstName) {
+        this.firstName = firstName;
         return this;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getDepartment() {
-        return department;
+    public String getLastName() {
+        return lastName;
     }
 
-    public Employee department(String department) {
-        this.department = department;
+    public Employee lastName(String lastName) {
+        this.lastName = lastName;
         return this;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public Employee position(Position position) {
+        this.position = position;
+        return this;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -85,8 +107,8 @@ public class Employee implements Serializable {
     public String toString() {
         return "Employee{" +
             "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", department='" + getDepartment() + "'" +
+            ", firstName='" + getFirstName() + "'" +
+            ", lastName='" + getLastName() + "'" +
             "}";
     }
 }

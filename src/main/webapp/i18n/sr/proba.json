@@ -1,0 +1,24 @@
+
+{
+    "brezaApp": {
+        "proba" : {
+            "home": {
+                "title": "Probas",
+                "createLabel": "Kreiraj novi Proba",
+                "createOrEditLabel": "Kreirajte ili izmenite Proba"
+            },
+            "created": "Kreiran je novi Proba pod nazivom {{ param }}",
+            "updated": "Proba pod nazivom {{ param }} je ažuriran",
+            "deleted": "Proba pod nazivom {{ param }} je obrisan",
+            "delete": {
+                "question": "Da li ste sigurni da želite da obrišete Proba pod nazivom {{ id }}?"
+            },
+            "detail": {
+                "title": "Proba"
+            },
+            "ime": "Ime",
+            "lala": "Lala",
+            "article": "Article"
+        }
+    }
+}

@@ -1,0 +1,83 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-proba-heading" jhiTranslate="brezaApp.proba.home.createOrEditLabel">Create or edit a Proba</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!proba.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="proba.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="brezaApp.proba.ime" for="field_ime">Ime</label>
+                    <input type="text" class="form-control" name="ime" id="field_ime"
+                        [(ngModel)]="proba.ime" required minlength="5" maxlength="20" pattern="^[a-zA-Z0-9]*$"/>
+                    <div [hidden]="!(editForm.controls.ime?.dirty && editForm.controls.ime?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.ime?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.ime?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 5 }">
+                        This field is required to be at least 5 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.ime?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 20 }">
+                        This field cannot be longer than 20 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.ime?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Ime' }">
+                            This field should follow pattern for "Ime".
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="brezaApp.proba.lala" for="field_lala">Lala</label>
+                    <input type="number" class="form-control" name="lala" id="field_lala"
+                        [(ngModel)]="proba.lala" required min="5" jhiMin="5" max="100" jhiMax="100"/>
+                    <div [hidden]="!(editForm.controls.lala?.dirty && editForm.controls.lala?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.lala?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.lala?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 5 }">
+                            This field should be at least 5.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.lala?.errors?.max" jhiTranslate="entity.validation.max" translateValues="{ max: 100 }">
+                            This field cannot be more than 100.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.lala?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="brezaApp.proba.article" for="field_article">Article</label>
+                    <select class="form-control" id="field_article" name="article" [(ngModel)]="proba.article"  required>
+                        <option *ngIf="!editForm.value.article" [ngValue]="null" selected></option>
+                        <option [ngValue]="articleOption.id === proba.article?.id ? proba.article : articleOption" *ngFor="let articleOption of articles; trackBy: trackArticleById">{{articleOption.name}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.article?.dirty && editForm.controls.article?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.article?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

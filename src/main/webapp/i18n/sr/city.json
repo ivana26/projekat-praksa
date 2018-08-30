@@ -17,7 +17,6 @@
                 "title": "City"
             },
             "name": "Name",
-            "postalCode": "Postal Code",
             "zipCode": "Zip Code"
         }
     }

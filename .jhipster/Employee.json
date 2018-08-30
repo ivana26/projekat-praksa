@@ -1,16 +1,31 @@
 {
     "fluentMethods": true,
     "clientRootFolder": "",
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "position",
+            "otherEntityName": "position",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "name"
+        }
+    ],
     "fields": [
         {
-            "fieldName": "name",
-            "fieldType": "String"
+            "fieldName": "firstName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
-            "fieldName": "department",
+            "fieldName": "lastName",
             "fieldType": "String",
-            "fieldValidateRules": []
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
     "changelogDate": "20180830115146",

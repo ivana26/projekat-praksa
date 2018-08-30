@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="proba">
+            <h2><span jhiTranslate="brezaApp.proba.detail.title">Proba</span> {{proba.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="brezaApp.proba.ime">Ime</span></dt>
+                <dd>
+                    <span>{{proba.ime}}</span>
+                </dd>
+                <dt><span jhiTranslate="brezaApp.proba.lala">Lala</span></dt>
+                <dd>
+                    <span>{{proba.lala}}</span>
+                </dd>
+                <dt><span jhiTranslate="brezaApp.proba.article">Article</span></dt>
+                <dd>
+                    <div *ngIf="proba.article">
+                        <a [routerLink]="['/article', proba.article?.id, 'view']">{{proba.article?.name}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/proba', proba.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

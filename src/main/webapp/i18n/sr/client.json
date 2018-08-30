@@ -18,6 +18,8 @@
             },
             "name": "Name",
             "address": "Address",
+            "phoneNumber": "Phone Number",
+            "email": "Email",
             "city": "City"
         }
     }

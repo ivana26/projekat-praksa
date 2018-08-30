@@ -1,0 +1,24 @@
+
+{
+    "brezaApp": {
+        "proba" : {
+            "home": {
+                "title": "Probas",
+                "createLabel": "Create a new Proba",
+                "createOrEditLabel": "Create or edit a Proba"
+            },
+            "created": "A new Proba is created with identifier {{ param }}",
+            "updated": "A Proba is updated with identifier {{ param }}",
+            "deleted": "A Proba is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Proba {{ id }}?"
+            },
+            "detail": {
+                "title": "Proba"
+            },
+            "ime": "Ime",
+            "lala": "Lala",
+            "article": "Article"
+        }
+    }
+}

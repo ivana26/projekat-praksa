@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -43,7 +44,7 @@ public class CityResource {
      */
     @PostMapping("/cities")
     @Timed
-    public ResponseEntity<City> createCity(@RequestBody City city) throws URISyntaxException {
+    public ResponseEntity<City> createCity(@Valid @RequestBody City city) throws URISyntaxException {
         log.debug("REST request to save City : {}", city);
         if (city.getId() != null) {
             throw new BadRequestAlertException("A new city cannot already have an ID", ENTITY_NAME, "idexists");
@@ -65,7 +66,7 @@ public class CityResource {
      */
     @PutMapping("/cities")
     @Timed
-    public ResponseEntity<City> updateCity(@RequestBody City city) throws URISyntaxException {
+    public ResponseEntity<City> updateCity(@Valid @RequestBody City city) throws URISyntaxException {
         log.debug("REST request to update City : {}", city);
         if (city.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

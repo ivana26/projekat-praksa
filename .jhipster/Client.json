@@ -6,6 +6,9 @@
             "relationshipName": "city",
             "otherEntityName": "city",
             "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
             "otherEntityField": "name"
         }
     ],
@@ -13,10 +16,20 @@
         {
             "fieldName": "name",
             "fieldType": "String",
-            "fieldValidateRules": []
+            "fieldValidateRules": ["required"]
         },
         {
             "fieldName": "address",
+            "fieldType": "String",
+            "fieldValidateRules": ["required"]
+        },
+        {
+            "fieldName": "phoneNumber",
+            "fieldType": "String",
+            "fieldValidateRules": ["required"]
+        },
+        {
+            "fieldName": "email",
             "fieldType": "String",
             "fieldValidateRules": []
         }

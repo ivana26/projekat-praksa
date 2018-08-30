@@ -3,6 +3,7 @@ package com.praksa.breza.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -20,13 +21,23 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @NotNull
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "address")
+    @NotNull
+    @Column(name = "address", nullable = false)
     private String address;
 
-    @ManyToOne
+    @NotNull
+    @Column(name = "phone_number", nullable = false)
+    private String phoneNumber;
+
+    @Column(name = "email")
+    private String email;
+
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties("")
     private City city;
 
@@ -63,6 +74,32 @@ public class Client implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public Client phoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+        return this;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Client email(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public City getCity() {
@@ -105,6 +142,8 @@ public class Client implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", address='" + getAddress() + "'" +
+            ", phoneNumber='" + getPhoneNumber() + "'" +
+            ", email='" + getEmail() + "'" +
             "}";
     }
 }

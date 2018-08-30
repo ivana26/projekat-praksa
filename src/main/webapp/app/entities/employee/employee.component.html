@@ -15,16 +15,22 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="name"><span jhiTranslate="brezaApp.employee.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="department"><span jhiTranslate="brezaApp.employee.department">Department</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="firstName"><span jhiTranslate="brezaApp.employee.firstName">First Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="lastName"><span jhiTranslate="brezaApp.employee.lastName">Last Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="position.name"><span jhiTranslate="brezaApp.employee.position">Position</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let employee of employees ;trackBy: trackId">
                 <td><a [routerLink]="['/employee', employee.id, 'view' ]">{{employee.id}}</a></td>
-                <td>{{employee.name}}</td>
-                <td>{{employee.department}}</td>
+                <td>{{employee.firstName}}</td>
+                <td>{{employee.lastName}}</td>
+                <td>
+                    <div *ngIf="employee.position">
+                        <a [routerLink]="['../position', employee.position?.id, 'view' ]" >{{employee.position?.name}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

@@ -5,12 +5,24 @@
     "fields": [
         {
             "fieldName": "name",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": ["required"]
+        },
+        
+        {
+            "fieldName": "articleNumber",
+            "fieldType": "String",
+            "fieldValidateRules": ["required"]
         },
         {
-            "fieldName": "amount",
+            "fieldName": "price",
             "fieldType": "Integer",
-            "fieldValidateRules": []
+            "fieldValidateRules": ["required"]
+        },
+        {
+            "fieldName": "availableAmount",
+            "fieldType": "Integer",
+            "fieldValidateRules": ["required"]
         }
     ],
     "changelogDate": "20180830084747",

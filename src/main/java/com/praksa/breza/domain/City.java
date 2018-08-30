@@ -2,6 +2,7 @@ package com.praksa.breza.domain;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -19,13 +20,12 @@ public class City implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @NotNull
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "postal_code")
-    private Integer postalCode;
-
-    @Column(name = "zip_code")
+    @NotNull
+    @Column(name = "zip_code", nullable = false)
     private Integer zipCode;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -48,19 +48,6 @@ public class City implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getPostalCode() {
-        return postalCode;
-    }
-
-    public City postalCode(Integer postalCode) {
-        this.postalCode = postalCode;
-        return this;
-    }
-
-    public void setPostalCode(Integer postalCode) {
-        this.postalCode = postalCode;
     }
 
     public Integer getZipCode() {
@@ -102,7 +89,6 @@ public class City implements Serializable {
         return "City{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", postalCode=" + getPostalCode() +
             ", zipCode=" + getZipCode() +
             "}";
     }

@@ -1,0 +1,48 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "article",
+            "otherEntityName": "article",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "name"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "ime",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength",
+                "pattern"
+            ],
+            "fieldValidateRulesMinlength": "5",
+            "fieldValidateRulesMaxlength": 20,
+            "fieldValidateRulesPattern": "^[a-zA-Z0-9]*$"
+        },
+        {
+            "fieldName": "lala",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": "5",
+            "fieldValidateRulesMax": 100
+        }
+    ],
+    "changelogDate": "20180830141134",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "proba",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

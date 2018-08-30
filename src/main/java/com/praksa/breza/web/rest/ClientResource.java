@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -43,7 +44,7 @@ public class ClientResource {
      */
     @PostMapping("/clients")
     @Timed
-    public ResponseEntity<Client> createClient(@RequestBody Client client) throws URISyntaxException {
+    public ResponseEntity<Client> createClient(@Valid @RequestBody Client client) throws URISyntaxException {
         log.debug("REST request to save Client : {}", client);
         if (client.getId() != null) {
             throw new BadRequestAlertException("A new client cannot already have an ID", ENTITY_NAME, "idexists");
@@ -65,7 +66,7 @@ public class ClientResource {
      */
     @PutMapping("/clients")
     @Timed
-    public ResponseEntity<Client> updateClient(@RequestBody Client client) throws URISyntaxException {
+    public ResponseEntity<Client> updateClient(@Valid @RequestBody Client client) throws URISyntaxException {
         log.debug("REST request to update Client : {}", client);
         if (client.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

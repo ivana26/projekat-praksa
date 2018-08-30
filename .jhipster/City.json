@@ -5,17 +5,13 @@
     "fields": [
         {
             "fieldName": "name",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "postalCode",
-            "fieldType": "Integer",
-            "fieldValidateRules": []
+            "fieldType": "String",
+            "fieldValidateRules": ["required"]
         },
         {
             "fieldName": "zipCode",
             "fieldType": "Integer",
-            "fieldValidateRules": []
+            "fieldValidateRules": ["required"]
         }
     ],
     "changelogDate": "20180830101308",

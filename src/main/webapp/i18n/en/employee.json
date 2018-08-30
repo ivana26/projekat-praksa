@@ -16,8 +16,9 @@
             "detail": {
                 "title": "Employee"
             },
-            "name": "Name",
-            "department": "Department"
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "position": "Position"
         }
     }
 }
