@@ -13,6 +13,7 @@
                 "employee": "Employee",
                 "proba": "Proba",
                 "position": "Position",
+                "type": "Type",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

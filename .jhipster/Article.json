@@ -1,28 +1,42 @@
 {
     "fluentMethods": true,
     "clientRootFolder": "",
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "type",
+            "otherEntityName": "type",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        }
+    ],
     "fields": [
         {
             "fieldName": "name",
             "fieldType": "String",
-            "fieldValidateRules": ["required"]
+            "fieldValidateRules": [
+                "required"
+            ]
         },
-        
         {
             "fieldName": "articleNumber",
             "fieldType": "String",
-            "fieldValidateRules": ["required"]
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "price",
             "fieldType": "Integer",
-            "fieldValidateRules": ["required"]
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "availableAmount",
             "fieldType": "Integer",
-            "fieldValidateRules": ["required"]
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
     "changelogDate": "20180830084747",
