@@ -1,0 +1,11 @@
+id;name;address;phone_number;email;city_id
+1;Ivana;Breza 12;111-111;ivana@gmail.com;1
+2;Vlada;Kosmajska 5;222-222;vlada@gmail.com;2
+3;Ana;Lipe 3;232-232;ana@gmail.com;1
+4;Marko;Jasenova 4;555-555;marko@gmail.com;3
+5;Milan;Borova 4;147-147;milan@gmail.com;4
+6;Mila;Omorika 7;252-252;mila@gmail.com;1
+7;Sara;Petefijeva 4;777-777;sara@gmail.com;1
+8;Nina;Kosmajska 11;123-111;nina@gmail.com;2
+9;Natasa;Lipar 8;888-888;natasa@gmail.com;3
+10;Luka;Cerski venac 9;111-444;luka@gmail.com;4
