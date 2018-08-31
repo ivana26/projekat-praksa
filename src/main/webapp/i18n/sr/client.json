@@ -3,24 +3,24 @@
     "brezaApp": {
         "client" : {
             "home": {
-                "title": "Clients",
-                "createLabel": "Kreiraj novi Client",
-                "createOrEditLabel": "Kreirajte ili izmenite Client"
+                "title": "Klijenti",
+                "createLabel": "Kreiraj novog Klijenta",
+                "createOrEditLabel": "Kreirajte ili izmenite Klijenta"
             },
-            "created": "Kreiran je novi Client pod nazivom {{ param }}",
-            "updated": "Client pod nazivom {{ param }} je ažuriran",
-            "deleted": "Client pod nazivom {{ param }} je obrisan",
+            "created": "Kreiran je novi Klijent pod nazivom {{ param }}",
+            "updated": "Klijent pod nazivom {{ param }} je ažuriran",
+            "deleted": "Klijent pod nazivom {{ param }} je obrisan",
             "delete": {
-                "question": "Da li ste sigurni da želite da obrišete Client pod nazivom {{ id }}?"
+                "question": "Da li ste sigurni da želite da obrišete Klijenta pod nazivom {{ id }}?"
             },
             "detail": {
-                "title": "Client"
+                "title": "Klijent"
             },
-            "name": "Name",
-            "address": "Address",
-            "phoneNumber": "Phone Number",
+            "name": "Ime",
+            "address": "Adresa",
+            "phoneNumber": "Broj Telefona",
             "email": "Email",
-            "city": "City"
+            "city": "Grad"
         }
     }
 }

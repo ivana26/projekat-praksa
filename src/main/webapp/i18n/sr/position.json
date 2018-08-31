@@ -3,20 +3,20 @@
     "brezaApp": {
         "position" : {
             "home": {
-                "title": "Positions",
-                "createLabel": "Kreiraj novi Position",
-                "createOrEditLabel": "Kreirajte ili izmenite Position"
+                "title": "Pozicija",
+                "createLabel": "Kreiraj novu Poziciju",
+                "createOrEditLabel": "Kreirajte ili izmenite Poziciju"
             },
-            "created": "Kreiran je novi Position pod nazivom {{ param }}",
-            "updated": "Position pod nazivom {{ param }} je ažuriran",
-            "deleted": "Position pod nazivom {{ param }} je obrisan",
+            "created": "Kreiran je novu Poziciju pod nazivom {{ param }}",
+            "updated": "Pozicija pod nazivom {{ param }} je ažuriran",
+            "deleted": "Pozicija pod nazivom {{ param }} je obrisan",
             "delete": {
-                "question": "Da li ste sigurni da želite da obrišete Position pod nazivom {{ id }}?"
+                "question": "Da li ste sigurni da želite da obrišete Pozicija pod nazivom {{ id }}?"
             },
             "detail": {
-                "title": "Position"
+                "title": "Pozicija"
             },
-            "name": "Name"
+            "name": "Ime"
         }
     }
 }
