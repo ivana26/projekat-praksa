@@ -1,3 +1,4 @@
+import { LocalDataSource } from 'ng2-smart-table';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
@@ -15,6 +16,29 @@ export class ArticleComponent implements OnInit, OnDestroy {
     articles: IArticle[];
     currentAccount: any;
     eventSubscriber: Subscription;
+    data: LocalDataSource;
+    settings = {
+        columns: {
+            id: {
+                title: 'ID'
+            },
+            name: {
+                title: 'Name'
+            },
+            articleNumber: {
+                title: 'Article Number'
+            },
+            price: {
+                title: 'Price'
+            },
+            availableAmount: {
+                title: 'Available Amount'
+            },
+            articleType: {
+                title: 'Types'
+            }
+        }
+    };
 
     constructor(
         private articleService: ArticleService,
@@ -27,6 +51,16 @@ export class ArticleComponent implements OnInit, OnDestroy {
         this.articleService.query().subscribe(
             (res: HttpResponse<IArticle[]>) => {
                 this.articles = res.body;
+                this.data = new LocalDataSource();
+                for (const article of res.body) {
+                    if (article.type != null) {
+                        article.articleType = article.type.name;
+                        this.data.add(article);
+                    } else {
+                        article.articleType = ' ';
+                        this.data.add(article);
+                    }
+                }
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );

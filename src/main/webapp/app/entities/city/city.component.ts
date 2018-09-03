@@ -6,6 +6,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { ICity } from 'app/shared/model/city.model';
 import { Principal } from 'app/core';
 import { CityService } from './city.service';
+import { Ng2SmartTableModule, LocalDataSource } from 'ng2-smart-table';
 
 @Component({
     selector: 'jhi-city',
@@ -15,6 +16,20 @@ export class CityComponent implements OnInit, OnDestroy {
     cities: ICity[];
     currentAccount: any;
     eventSubscriber: Subscription;
+    data: LocalDataSource;
+    settings = {
+        columns: {
+            id: {
+                title: 'ID'
+            },
+            name: {
+                title: 'Name'
+            },
+            zipCode: {
+                title: 'Zip Code'
+            }
+        }
+    };
 
     constructor(
         private cityService: CityService,
@@ -27,6 +42,7 @@ export class CityComponent implements OnInit, OnDestroy {
         this.cityService.query().subscribe(
             (res: HttpResponse<ICity[]>) => {
                 this.cities = res.body;
+                this.data = new LocalDataSource(res.body);
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
