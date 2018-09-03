@@ -5,14 +5,9 @@ import com.praksa.breza.domain.Employee;
 import com.praksa.breza.repository.EmployeeRepository;
 import com.praksa.breza.web.rest.errors.BadRequestAlertException;
 import com.praksa.breza.web.rest.util.HeaderUtil;
-import com.praksa.breza.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -85,16 +80,13 @@ public class EmployeeResource {
     /**
      * GET  /employees : get all the employees.
      *
-     * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of employees in body
      */
     @GetMapping("/employees")
     @Timed
-    public ResponseEntity<List<Employee>> getAllEmployees(Pageable pageable) {
-        log.debug("REST request to get a page of Employees");
-        Page<Employee> page = employeeRepository.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/employees");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    public List<Employee> getAllEmployees() {
+        log.debug("REST request to get all Employees");
+        return employeeRepository.findAll();
     }
 
     /**

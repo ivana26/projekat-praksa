@@ -13,11 +13,11 @@
     <div class="table-responsive" *ngIf="employees">
         <table class="table table-striped">
             <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="firstName"><span jhiTranslate="brezaApp.employee.firstName">First Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="lastName"><span jhiTranslate="brezaApp.employee.lastName">Last Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="position.name"><span jhiTranslate="brezaApp.employee.position">Position</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="brezaApp.employee.firstName">First Name</span></th>
+            <th><span jhiTranslate="brezaApp.employee.lastName">Last Name</span></th>
+            <th><span jhiTranslate="brezaApp.employee.position">Position</span></th>
             <th></th>
             </tr>
             </thead>
@@ -59,15 +59,5 @@
             </tbody>
         </table>
     </div>
-    <div *ngIf="employees && employees.length">
-        <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
-        </div>
-        <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
-        </div>
-    </div>
-    
     <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
-  
 </div>

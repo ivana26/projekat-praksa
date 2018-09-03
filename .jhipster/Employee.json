@@ -34,5 +34,5 @@
     "service": "no",
     "entityTableName": "employee",
     "jpaMetamodelFiltering": false,
-    "pagination": "pagination"
+    "pagination": "no"
 }
