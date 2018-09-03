@@ -67,4 +67,7 @@
             <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
         </div>
     </div>
+    
+    <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+  
 </div>
