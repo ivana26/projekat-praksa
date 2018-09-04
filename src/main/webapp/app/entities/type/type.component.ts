@@ -39,7 +39,7 @@ export class TypeComponent implements OnInit, OnDestroy {
             ]
         },
         add: {
-            addButtonContent: 'Add new Article'
+            addButtonContent: 'Add new Type'
         },
         columns: {
             id: {

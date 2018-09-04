@@ -39,7 +39,7 @@ export class ClientComponent implements OnInit, OnDestroy {
             ]
         },
         add: {
-            addButtonContent: 'Add new Article'
+            addButtonContent: 'Add new Client'
         },
         columns: {
             id: {

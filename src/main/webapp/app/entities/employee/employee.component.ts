@@ -39,7 +39,7 @@ export class EmployeeComponent implements OnInit, OnDestroy {
             ]
         },
         add: {
-            addButtonContent: 'Add new Article'
+            addButtonContent: 'Add new Employee'
         },
         columns: {
             id: {

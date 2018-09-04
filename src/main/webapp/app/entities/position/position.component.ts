@@ -39,7 +39,7 @@ export class PositionComponent implements OnInit, OnDestroy {
             ]
         },
         add: {
-            addButtonContent: 'Add new Article'
+            addButtonContent: 'Add new Position'
         },
         columns: {
             id: {
