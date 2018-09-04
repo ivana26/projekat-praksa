@@ -7,6 +7,7 @@ import { IPosition } from 'app/shared/model/position.model';
 import { Principal } from 'app/core';
 import { PositionService } from './position.service';
 import { LocalDataSource } from 'ng2-smart-table';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'jhi-position',
@@ -18,6 +19,28 @@ export class PositionComponent implements OnInit, OnDestroy {
     eventSubscriber: Subscription;
     data: LocalDataSource;
     settings = {
+        mode: 'external',
+        actions: {
+            edit: false,
+            delete: false,
+            custom: [
+                {
+                    name: 'View',
+                    title: 'View  '
+                },
+                {
+                    name: 'Edit',
+                    title: 'Edit  '
+                },
+                {
+                    name: 'Delete',
+                    title: 'Delete'
+                }
+            ]
+        },
+        add: {
+            addButtonContent: 'Add new Article'
+        },
         columns: {
             id: {
                 title: 'ID'
@@ -32,7 +55,8 @@ export class PositionComponent implements OnInit, OnDestroy {
         private positionService: PositionService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
-        private principal: Principal
+        private principal: Principal,
+        private router: Router
     ) {}
 
     loadAll() {
@@ -67,5 +91,19 @@ export class PositionComponent implements OnInit, OnDestroy {
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
+    }
+    addNew() {
+        this.router.navigate(['/client/new']);
+    }
+    myView(event) {
+        if (event.action === 'View') {
+            this.router.navigate(['client/' + event.data.id + '/view']);
+        }
+        if (event.action === 'Edit') {
+            this.router.navigate(['client/' + event.data.id + '/edit']);
+        }
+        if (event.action === 'Delete') {
+            this.router.navigate(['/', { outlets: { popup: 'client/' + event.data.id + '/delete' } }]);
+        }
     }
 }
