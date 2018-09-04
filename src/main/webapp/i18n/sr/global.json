@@ -14,6 +14,7 @@
                 "proba": "Proba",
                 "position": "Pozicija",
                 "type": "Tip",
+                "vehicle": "Vehicle",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
