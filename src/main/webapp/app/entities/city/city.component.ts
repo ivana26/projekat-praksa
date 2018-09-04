@@ -7,6 +7,7 @@ import { ICity } from 'app/shared/model/city.model';
 import { Principal } from 'app/core';
 import { CityService } from './city.service';
 import { Ng2SmartTableModule, LocalDataSource } from 'ng2-smart-table';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'jhi-city',
@@ -18,6 +19,28 @@ export class CityComponent implements OnInit, OnDestroy {
     eventSubscriber: Subscription;
     data: LocalDataSource;
     settings = {
+        mode: 'external',
+        actions: {
+            edit: false,
+            delete: false,
+            custom: [
+                {
+                    name: 'View',
+                    title: 'View  '
+                },
+                {
+                    name: 'Edit',
+                    title: 'Edit  '
+                },
+                {
+                    name: 'Delete',
+                    title: 'Delete'
+                }
+            ]
+        },
+        add: {
+            addButtonContent: 'Add new Article'
+        },
         columns: {
             id: {
                 title: 'ID'
@@ -35,7 +58,8 @@ export class CityComponent implements OnInit, OnDestroy {
         private cityService: CityService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
-        private principal: Principal
+        private principal: Principal,
+        private router: Router
     ) {}
 
     loadAll() {
@@ -70,5 +94,19 @@ export class CityComponent implements OnInit, OnDestroy {
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
+    }
+    addNew() {
+        this.router.navigate(['/city/new']);
+    }
+    myView(event) {
+        if (event.action === 'View') {
+            this.router.navigate(['city/' + event.data.id + '/view']);
+        }
+        if (event.action === 'Edit') {
+            this.router.navigate(['city/' + event.data.id + '/edit']);
+        }
+        if (event.action === 'Delete') {
+            this.router.navigate(['/', { outlets: { popup: 'city/' + event.data.id + '/delete' } }]);
+        }
     }
 }
