@@ -6,6 +6,8 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { IOnlineOrder } from 'app/shared/model/online-order.model';
 import { Principal } from 'app/core';
 import { OnlineOrderService } from './online-order.service';
+import { Router } from '@angular/router';
+import { LocalDataSource } from 'ng2-smart-table';
 
 @Component({
     selector: 'jhi-online-order',
@@ -15,18 +17,66 @@ export class OnlineOrderComponent implements OnInit, OnDestroy {
     onlineOrders: IOnlineOrder[];
     currentAccount: any;
     eventSubscriber: Subscription;
-
+    data: LocalDataSource;
+    settings = {
+        mode: 'external',
+        actions: {
+            edit: false,
+            delete: false,
+            custom: [
+                {
+                    name: 'View',
+                    title: 'View  '
+                },
+                {
+                    name: 'Edit',
+                    title: 'Edit  '
+                },
+                {
+                    name: 'Delete',
+                    title: 'Delete'
+                }
+            ]
+        },
+        add: {
+            addButtonContent: 'Add new online-order'
+        },
+        columns: {
+            id: {
+                title: 'ID'
+            },
+            address: {
+                title: 'Address'
+            },
+            phoneNumber: {
+                title: 'Phone Number'
+            },
+            totalPrice: {
+                title: 'Total Price'
+            },
+            city: {
+                title: 'City',
+                valuePrepareFunction: city => city.name
+            },
+            client: {
+                title: 'Client',
+                valuePrepareFunction: client => client.name
+            }
+        }
+    };
     constructor(
         private onlineOrderService: OnlineOrderService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
-        private principal: Principal
+        private principal: Principal,
+        private router: Router
     ) {}
 
     loadAll() {
         this.onlineOrderService.query().subscribe(
             (res: HttpResponse<IOnlineOrder[]>) => {
                 this.onlineOrders = res.body;
+                this.data = new LocalDataSource(res.body);
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -54,5 +104,19 @@ export class OnlineOrderComponent implements OnInit, OnDestroy {
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
+    }
+    addNew() {
+        this.router.navigate(['/online-order/new']);
+    }
+    myView(event) {
+        if (event.action === 'View') {
+            this.router.navigate(['online-order/' + event.data.id + '/view']);
+        }
+        if (event.action === 'Edit') {
+            this.router.navigate(['online-order/' + event.data.id + '/edit']);
+        }
+        if (event.action === 'Delete') {
+            this.router.navigate(['/', { outlets: { popup: 'online-order/' + event.data.id + '/delete' } }]);
+        }
     }
 }
