@@ -55,7 +55,7 @@ export class OnlineOrderItemComponent implements OnInit, OnDestroy {
                 title: 'Order',
                 valuePrepareFunction: order => order.id
             },
-            conlineArticle: {
+            onlineArticle: {
                 title: 'Article',
                 valuePrepareFunction: article => article.name
             }
