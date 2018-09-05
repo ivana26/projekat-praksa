@@ -1,0 +1,46 @@
+{
+    "name": "OnlineOrderItem",
+    "fields": [
+        {
+            "fieldName": "orderedAmount",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "itemPrice",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "onlineOrder",
+            "otherEntityName": "onlineOrder",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "onlineArticle",
+            "otherEntityName": "article",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "id"
+
+        }
+    ],
+    "changelogDate": "20180905084857",
+    "entityTableName": "online_order_item",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
