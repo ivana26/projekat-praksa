@@ -51,13 +51,11 @@ export class OnlineOrderItemComponent implements OnInit, OnDestroy {
             itemPrice: {
                 title: 'Item Price'
             },
-            onlineOrder: {
-                title: 'Order',
-                valuePrepareFunction: order => order.id
+            itemOrder: {
+                title: 'Order'
             },
-            onlineArticle: {
-                title: 'Article',
-                valuePrepareFunction: article => article.name
+            itemArticle: {
+                title: 'Article'
             }
         }
     };
@@ -73,7 +71,12 @@ export class OnlineOrderItemComponent implements OnInit, OnDestroy {
         this.onlineOrderItemService.query().subscribe(
             (res: HttpResponse<IOnlineOrderItem[]>) => {
                 this.onlineOrderItems = res.body;
-                this.data = new LocalDataSource(res.body);
+                this.data = new LocalDataSource();
+                for (const itemO of res.body) {
+                    itemO.itemArticle = itemO.onlineArticle.name;
+                    itemO.itemOrder = itemO.onlineOrder.id;
+                    this.data.add(itemO);
+                }
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );

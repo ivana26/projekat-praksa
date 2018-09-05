@@ -54,9 +54,8 @@ export class EmployeeComponent implements OnInit, OnDestroy {
             // lastName : {
             //     title: 'Last Name'
             // },
-            position: {
-                title: 'Position',
-                valuePrepareFunction: position => position.name
+            employeePosition: {
+                title: 'Position'
             }
         }
     };
@@ -76,6 +75,7 @@ export class EmployeeComponent implements OnInit, OnDestroy {
                 this.data = new LocalDataSource();
                 for (const name of res.body) {
                     name.firstLast = name.firstName + ' ' + name.lastName;
+                    name.employeePosition = name.position.name;
                     this.data.add(name);
                 }
             },

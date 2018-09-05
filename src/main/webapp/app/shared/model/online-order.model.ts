@@ -8,6 +8,8 @@ export interface IOnlineOrder {
     totalPrice?: number;
     city?: ICity;
     client?: IClient;
+    orderCity?: string;
+    orderClient?: string;
 }
 
 export class OnlineOrder implements IOnlineOrder {
