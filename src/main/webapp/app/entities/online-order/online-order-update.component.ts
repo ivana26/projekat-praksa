@@ -18,7 +18,8 @@ import { ClientService } from 'app/entities/client';
 export class OnlineOrderUpdateComponent implements OnInit {
     private _onlineOrder: IOnlineOrder;
     isSaving: boolean;
-
+    id: number;
+    private sub: any;
     cities: ICity[];
 
     clients: IClient[];

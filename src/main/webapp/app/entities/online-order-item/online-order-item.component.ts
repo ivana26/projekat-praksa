@@ -7,7 +7,7 @@ import { IOnlineOrderItem } from 'app/shared/model/online-order-item.model';
 import { Principal } from 'app/core';
 import { OnlineOrderItemService } from './online-order-item.service';
 import { LocalDataSource } from 'ng2-smart-table';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'jhi-online-order-item',
@@ -18,6 +18,7 @@ export class OnlineOrderItemComponent implements OnInit, OnDestroy {
     currentAccount: any;
     eventSubscriber: Subscription;
     data: LocalDataSource;
+    onlineOrderid: number;
     settings = {
         mode: 'external',
         actions: {
@@ -64,7 +65,8 @@ export class OnlineOrderItemComponent implements OnInit, OnDestroy {
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
         private principal: Principal,
-        private router: Router
+        private router: Router,
+        private route: ActivatedRoute
     ) {}
 
     loadAll() {
@@ -75,7 +77,9 @@ export class OnlineOrderItemComponent implements OnInit, OnDestroy {
                 for (const itemO of res.body) {
                     itemO.itemArticle = itemO.onlineArticle.name;
                     itemO.itemOrder = itemO.onlineOrder.id;
-                    this.data.add(itemO);
+                    if (itemO.onlineOrder.id === this.onlineOrderid) {
+                        this.data.add(itemO);
+                    }
                 }
             },
             (res: HttpErrorResponse) => this.onError(res.message)
@@ -88,6 +92,10 @@ export class OnlineOrderItemComponent implements OnInit, OnDestroy {
             this.currentAccount = account;
         });
         this.registerChangeInOnlineOrderItems();
+        this.route.params.subscribe(params => {
+            this.onlineOrderid = +params['id'];
+            console.log(this.onlineOrderid + 'ONLINEORDERID');
+        });
     }
 
     ngOnDestroy() {

@@ -6,7 +6,6 @@ import { of } from 'rxjs';
 import { BrezaTestModule } from '../../../test.module';
 import { OnlineOrderDetailComponent } from 'app/entities/online-order/online-order-detail.component';
 import { OnlineOrder } from 'app/shared/model/online-order.model';
-
 describe('Component Tests', () => {
     describe('OnlineOrder Management Detail Component', () => {
         let comp: OnlineOrderDetailComponent;

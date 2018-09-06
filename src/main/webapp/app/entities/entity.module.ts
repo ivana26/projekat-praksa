@@ -24,7 +24,7 @@ import { BrezaOnlineOrderItemModule } from './online-order-item/online-order-ite
         BrezaTypeModule,
         BrezaVehicleModule,
         BrezaOnlineOrderModule,
-        BrezaOnlineOrderItemModule,
+        BrezaOnlineOrderItemModule
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

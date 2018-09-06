@@ -63,6 +63,9 @@
                         This field is required.
                     </small>
                 </div>
+            </div>  
+            <div *ngIf="onlineOrder.id">
+            <jhi-online-order-item ></jhi-online-order-item>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
