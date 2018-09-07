@@ -103,6 +103,13 @@ public class OnlineOrderItemResource {
         return ResponseUtil.wrapOrNotFound(onlineOrderItem);
     }
 
+    @GetMapping("/online-order-items/online-orders/{orderId}")
+    @Timed
+    public List<OnlineOrderItem> getOnlineOrderItemByOrder(@PathVariable Long orderId) {
+       List<OnlineOrderItem> onlineOrderItem = onlineOrderItemRepository.findAllByOnlineOrderId(orderId);
+        return onlineOrderItem;
+    }
+
     /**
      * DELETE  /online-order-items/:id : delete the "id" onlineOrderItem.
      *

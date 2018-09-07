@@ -1,5 +1,8 @@
 package com.praksa.breza.repository;
 
+import java.util.List;
+
+import com.google.common.base.Optional;
 import com.praksa.breza.domain.OnlineOrderItem;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface OnlineOrderItemRepository extends JpaRepository<OnlineOrderItem, Long> {
 
+public interface OnlineOrderItemRepository extends JpaRepository<OnlineOrderItem, Long> {
+    List<OnlineOrderItem> findAllByOnlineOrderId(Long onlineOrderId);
 }

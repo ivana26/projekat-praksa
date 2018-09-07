@@ -26,6 +26,9 @@ export class OnlineOrderItemService {
     find(id: number): Observable<EntityResponseType> {
         return this.http.get<IOnlineOrderItem>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
+    findByOnlineOrderid(orderId: number): Observable<EntityArrayResponseType> {
+        return this.http.get<IOnlineOrderItem[]>(`${this.resourceUrl}/online-orders/${orderId}`, { observe: 'response' });
+    }
 
     query(req?: any): Observable<EntityArrayResponseType> {
         const options = createRequestOption(req);

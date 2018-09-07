@@ -70,7 +70,7 @@ export class OnlineOrderItemComponent implements OnInit, OnDestroy {
     ) {}
 
     loadAll() {
-        this.onlineOrderItemService.query().subscribe(
+        this.onlineOrderItemService.findByOnlineOrderid(this.onlineOrderid).subscribe(
             (res: HttpResponse<IOnlineOrderItem[]>) => {
                 this.onlineOrderItems = res.body;
                 this.data = new LocalDataSource();
@@ -87,15 +87,16 @@ export class OnlineOrderItemComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.loadAll();
+        this.route.params.subscribe(params => {
+            this.onlineOrderid = +params['id'];
+            console.log(this.onlineOrderid + 'ONLINEORDERID');
+            this.loadAll();
+        });
+
         this.principal.identity().then(account => {
             this.currentAccount = account;
         });
         this.registerChangeInOnlineOrderItems();
-        this.route.params.subscribe(params => {
-            this.onlineOrderid = +params['id'];
-            console.log(this.onlineOrderid + 'ONLINEORDERID');
-        });
     }
 
     ngOnDestroy() {
