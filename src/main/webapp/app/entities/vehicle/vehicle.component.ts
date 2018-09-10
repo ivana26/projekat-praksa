@@ -6,7 +6,8 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { IVehicle } from 'app/shared/model/vehicle.model';
 import { Principal } from 'app/core';
 import { VehicleService } from './vehicle.service';
-
+import { Ng2SmartTableModule, LocalDataSource } from 'ng2-smart-table';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'jhi-vehicle',
     templateUrl: './vehicle.component.html'
@@ -15,18 +16,55 @@ export class VehicleComponent implements OnInit, OnDestroy {
     vehicles: IVehicle[];
     currentAccount: any;
     eventSubscriber: Subscription;
+    data: LocalDataSource;
 
+    settings = {
+        mode: 'inline',
+        actions: {
+            delete: false,
+            custom: [
+                {
+                    name: 'View',
+                    title: 'View  '
+                },
+                {
+                    name: 'Delete',
+                    title: 'Delete'
+                }
+            ]
+        },
+        columns: {
+            id: {
+                title: 'ID',
+                editable: false
+            },
+            vehicleNumber: {
+                title: 'Vehicle Number'
+            },
+            brand: {
+                title: 'Brand'
+            },
+            model: {
+                title: 'Model'
+            }
+        },
+        attr: {
+            class: 'table table-striped table table-success'
+        }
+    };
     constructor(
         private vehicleService: VehicleService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
-        private principal: Principal
+        private principal: Principal,
+        private router: Router
     ) {}
 
     loadAll() {
         this.vehicleService.query().subscribe(
             (res: HttpResponse<IVehicle[]>) => {
-                this.vehicles = res.body;
+                // this.vehicles = res.body;
+                this.data = new LocalDataSource(res.body);
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -54,5 +92,13 @@ export class VehicleComponent implements OnInit, OnDestroy {
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
+    }
+    myView(event) {
+        if (event.action === 'Delete') {
+            this.router.navigate(['/', { outlets: { popup: 'vehicle/' + event.data.id + '/delete' } }]);
+        }
+        if (event.action === 'View') {
+            this.router.navigate(['vehicle/' + event.data.id + '/view']);
+        }
     }
 }
