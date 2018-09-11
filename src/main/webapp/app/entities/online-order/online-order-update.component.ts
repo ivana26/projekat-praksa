@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { JhiAlertService } from 'ng-jhipster';
@@ -21,6 +21,7 @@ export class OnlineOrderUpdateComponent implements OnInit {
     id: number;
     private sub: any;
     cities: ICity[];
+    mojurl: String = this.router.url;
 
     clients: IClient[];
 
@@ -29,7 +30,8 @@ export class OnlineOrderUpdateComponent implements OnInit {
         private onlineOrderService: OnlineOrderService,
         private cityService: CityService,
         private clientService: ClientService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -49,6 +51,7 @@ export class OnlineOrderUpdateComponent implements OnInit {
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
+        console.log('MOJ URL', this.mojurl);
     }
 
     previousState() {

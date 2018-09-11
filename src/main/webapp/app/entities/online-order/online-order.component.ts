@@ -3,10 +3,10 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
-import { IOnlineOrder } from 'app/shared/model/online-order.model';
+import { IOnlineOrder, OnlineOrder } from 'app/shared/model/online-order.model';
 import { Principal } from 'app/core';
 import { OnlineOrderService } from './online-order.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 
 @Component({
@@ -18,6 +18,7 @@ export class OnlineOrderComponent implements OnInit, OnDestroy {
     currentAccount: any;
     eventSubscriber: Subscription;
     data: LocalDataSource;
+    url: String = this.router.url;
     settings = {
         mode: 'external',
         actions: {
@@ -67,7 +68,8 @@ export class OnlineOrderComponent implements OnInit, OnDestroy {
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
         private principal: Principal,
-        private router: Router
+        private router: Router,
+        private route: ActivatedRoute
     ) {}
 
     loadAll() {
@@ -115,7 +117,7 @@ export class OnlineOrderComponent implements OnInit, OnDestroy {
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
     }
-    addNew() {
+    addNew(event) {
         this.router.navigate(['/online-order/new']);
     }
     myView(event) {
