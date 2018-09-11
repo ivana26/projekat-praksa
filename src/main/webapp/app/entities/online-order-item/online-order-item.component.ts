@@ -19,6 +19,7 @@ export class OnlineOrderItemComponent implements OnInit, OnDestroy {
     eventSubscriber: Subscription;
     data: LocalDataSource;
     onlineOrderid: number;
+    articlePrice: number;
     settings = {
         mode: 'external',
         actions: {
@@ -76,6 +77,8 @@ export class OnlineOrderItemComponent implements OnInit, OnDestroy {
                 this.data = new LocalDataSource();
                 for (const itemO of res.body) {
                     itemO.itemArticle = itemO.onlineArticle.name;
+                    itemO.itemOrder = itemO.onlineArticle.price;
+                    itemO.itemPrice = itemO.onlineArticle.price * itemO.orderedAmount;
                     itemO.itemOrder = itemO.onlineOrder.id;
                     if (itemO.onlineOrder.id === this.onlineOrderid) {
                         this.data.add(itemO);
