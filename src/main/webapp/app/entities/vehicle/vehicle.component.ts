@@ -124,8 +124,10 @@ export class VehicleComponent implements OnInit, OnDestroy {
         this.isSaving = true;
         if (vehicle.id) {
             this.subscribeToSaveResponse(this.vehicleService.update(vehicle));
+            console.log('uslo u update');
         } else {
             this.subscribeToSaveResponse(this.vehicleService.create(vehicle));
+            console.log('uslo u save');
         }
     }
 
