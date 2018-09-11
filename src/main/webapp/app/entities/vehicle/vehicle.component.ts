@@ -26,6 +26,9 @@ export class VehicleComponent implements OnInit, OnDestroy {
         add: {
             confirmCreate: true
         },
+        edit: {
+            confirmSave: true
+        },
         actions: {
             delete: false,
             custom: [
@@ -141,6 +144,20 @@ export class VehicleComponent implements OnInit, OnDestroy {
             vehicle.brand !== null &&
             vehicle.brand.charAt(0).toLowerCase() !== vehicle.brand.charAt(0) &&
             window.confirm('Are you sure you want to save?')
+        ) {
+            event.confirm.resolve(vehicle);
+            this.save(vehicle);
+        } else {
+            event.confirm.reject();
+            this.onSaveError();
+        }
+    }
+    onEditConfirm(event) {
+        const vehicle: Vehicle = event.newData;
+        if (
+            vehicle.brand !== null &&
+            vehicle.brand.charAt(0).toLowerCase() !== vehicle.brand.charAt(0) &&
+            window.confirm('Are you sure you want to update?')
         ) {
             event.confirm.resolve(vehicle);
             this.save(vehicle);

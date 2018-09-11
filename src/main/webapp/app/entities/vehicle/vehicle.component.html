@@ -55,6 +55,6 @@
             </tbody>
         </table> -->
     </div>
-    <ng2-smart-table [settings]="settings" [source]="data" (custom)="myView($event)"(createConfirm)="onCreateConfirm($event)">
+    <ng2-smart-table [settings]="settings" [source]="data" (custom)="myView($event)"(createConfirm)="onCreateConfirm($event)" (editConfirm)="onEditConfirm($event)">
     </ng2-smart-table>
 </div>
