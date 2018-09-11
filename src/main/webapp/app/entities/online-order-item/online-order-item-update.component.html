@@ -10,7 +10,7 @@
                         [(ngModel)]="onlineOrderItem.id" readonly />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="brezaApp.onlineOrderItem.orderedAmount" for="field_orderedAmount">Ordered Amount</label>
+                    <label class="form-control-label" jhiTranslate="brezaApp.onlineOrderItem.orderedAmount" for="field_orderedAmount" (click)="totalPrice()">Ordered Amount</label>
                     <input type="number" class="form-control" name="orderedAmount" id="field_orderedAmount"
                         [(ngModel)]="onlineOrderItem.orderedAmount" required/>
                     <div [hidden]="!(editForm.controls.orderedAmount?.dirty && editForm.controls.orderedAmount?.invalid)">
@@ -27,7 +27,7 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="brezaApp.onlineOrderItem.itemPrice" for="field_itemPrice">Item Price</label>
                     <input type="number" class="form-control" name="itemPrice" id="field_itemPrice"
-                        [(ngModel)]="onlineOrderItem.itemPrice" readonly />
+                        [(ngModel)]="onlineOrderItem.totalPrice" readonly />
                 </div>
 
                 <div class="form-group">
@@ -44,7 +44,7 @@
                     </small>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="brezaApp.onlineOrderItem.onlineArticle" for="field_onlineArticle">Online Article</label>
+                    <label class="form-control-label" jhiTranslate="brezaApp.onlineOrderItem.onlineArticle" for="field_onlineArticle" (click)="totalPrice()">Online Article</label>
                     <select class="form-control" id="field_onlineArticle" name="onlineArticle" [(ngModel)]="onlineOrderItem.onlineArticle"  required>
                         <option *ngIf="!editForm.value.onlineArticle" [ngValue]="null" selected></option>
                         <option [ngValue]="articleOption.id === onlineOrderItem.onlineArticle?.id ? onlineOrderItem.onlineArticle : articleOption" *ngFor="let articleOption of articles; trackBy: trackArticleByName">{{articleOption.name}} - {{articleOption.price}}$</option>

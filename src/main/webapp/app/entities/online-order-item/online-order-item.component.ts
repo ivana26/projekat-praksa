@@ -115,14 +115,26 @@ export class OnlineOrderItemComponent implements OnInit, OnDestroy {
         this.jhiAlertService.error(errorMessage, null, null);
     }
     addNew() {
-        this.router.navigate(['/online-order-item/new']);
+        this.eventManager.broadcast({
+            name: 'saveOnlineOrder',
+            content: ''
+        });
+        setTimeout(() => this.router.navigate(['/online-order-item/new']), 100);
     }
     myView(event) {
         if (event.action === 'View') {
-            this.router.navigate(['online-order-item/' + event.data.id + '/view']);
+            this.eventManager.broadcast({
+                name: 'saveOnlineOrder',
+                content: ''
+            });
+            setTimeout(() => this.router.navigate(['online-order-item/' + event.data.id + '/view']), 100);
         }
         if (event.action === 'Edit') {
-            this.router.navigate(['online-order-item/' + event.data.id + '/edit']);
+            this.eventManager.broadcast({
+                name: 'saveOnlineOrder',
+                content: ''
+            });
+            setTimeout(() => this.router.navigate(['online-order-item/' + event.data.id + '/edit']), 100);
         }
         if (event.action === 'Delete') {
             this.router.navigate(['/', { outlets: { popup: 'online-order-item/' + event.data.id + '/delete' } }]);

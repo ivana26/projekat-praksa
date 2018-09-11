@@ -78,6 +78,10 @@ export class OnlineOrderComponent implements OnInit, OnDestroy {
                 this.onlineOrders = res.body;
                 this.data = new LocalDataSource();
                 for (const onlineOrder of res.body) {
+                    this.eventManager.broadcast({
+                        name: 'idListener',
+                        content: onlineOrder.id
+                    });
                     if (onlineOrder.totalPrice === null) {
                         onlineOrder.orderCity = onlineOrder.city.name;
                         onlineOrder.orderClient = onlineOrder.client.name;

@@ -1,8 +1,9 @@
+import { Article } from './../../shared/model/article.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { JhiAlertService } from 'ng-jhipster';
+import { Observable, Subscription } from 'rxjs';
+import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 
 import { IOnlineOrderItem } from 'app/shared/model/online-order-item.model';
 import { OnlineOrderItemService } from './online-order-item.service';
@@ -18,9 +19,7 @@ import { ArticleService } from 'app/entities/article';
 export class OnlineOrderItemUpdateComponent implements OnInit {
     private _onlineOrderItem: IOnlineOrderItem;
     isSaving: boolean;
-
     onlineorders: IOnlineOrder[];
-
     articles: IArticle[];
 
     constructor(
@@ -28,7 +27,8 @@ export class OnlineOrderItemUpdateComponent implements OnInit {
         private onlineOrderItemService: OnlineOrderItemService,
         private onlineOrderService: OnlineOrderService,
         private articleService: ArticleService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private eventManager: JhiEventManager
     ) {}
 
     ngOnInit() {
@@ -94,4 +94,11 @@ export class OnlineOrderItemUpdateComponent implements OnInit {
     set onlineOrderItem(onlineOrderItem: IOnlineOrderItem) {
         this._onlineOrderItem = onlineOrderItem;
     }
+
+    // totalPrice() {
+    //     if (this.onlineOrderItem.onlineArticle.price && this._onlineOrderItem.orderedAmount) {
+    //         return this._onlineOrderItem.orderedAmount * this.onlineOrderItem.onlineArticle.price;
+    //     }
+
+    // }
 }
