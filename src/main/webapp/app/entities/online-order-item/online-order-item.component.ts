@@ -129,7 +129,7 @@ export class OnlineOrderItemComponent implements OnInit, OnDestroy {
             name: 'saveOnlineOrder',
             content: ''
         });
-        setTimeout(() => this.router.navigate(['/online-order-item/new']), 100);
+        setTimeout(() => this.router.navigate(['online-order/' + this.onlineOrderid + '/online-order-item/new']), 100);
     }
     myView(event) {
         if (event.action === 'View') {
@@ -137,14 +137,20 @@ export class OnlineOrderItemComponent implements OnInit, OnDestroy {
                 name: 'saveOnlineOrder',
                 content: ''
             });
-            setTimeout(() => this.router.navigate(['online-order-item/' + event.data.id + '/view']), 100);
+            setTimeout(
+                () => this.router.navigate(['online-order/' + event.data.itemOrder + '/online-order-item/' + event.data.id + '/view']),
+                100
+            );
         }
         if (event.action === 'Edit') {
             this.eventManager.broadcast({
                 name: 'saveOnlineOrder',
                 content: ''
             });
-            setTimeout(() => this.router.navigate(['online-order-item/' + event.data.id + '/edit']), 100);
+            setTimeout(
+                () => this.router.navigate(['online-order/' + event.data.itemOrder + '/online-order-item/' + event.data.id + '/edit']),
+                100
+            );
         }
         if (event.action === 'Delete') {
             this.router.navigate(['/', { outlets: { popup: 'online-order-item/' + event.data.id + '/delete' } }]);
