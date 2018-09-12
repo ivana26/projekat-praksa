@@ -21,6 +21,7 @@ export class OnlineOrderItemUpdateComponent implements OnInit {
     isSaving: boolean;
     onlineorders: IOnlineOrder[];
     articles: IArticle[];
+    idd = 0;
 
     constructor(
         private jhiAlertService: JhiAlertService,
@@ -28,7 +29,8 @@ export class OnlineOrderItemUpdateComponent implements OnInit {
         private onlineOrderService: OnlineOrderService,
         private articleService: ArticleService,
         private activatedRoute: ActivatedRoute,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private route: ActivatedRoute
     ) {}
 
     ngOnInit() {
@@ -39,6 +41,17 @@ export class OnlineOrderItemUpdateComponent implements OnInit {
         this.onlineOrderService.query().subscribe(
             (res: HttpResponse<IOnlineOrder[]>) => {
                 this.onlineorders = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        // izvadila iz route itemorder
+        this.route.params.subscribe(params => {
+            this.idd = +params['itemOrder'];
+        });
+        // pronasla taj route preko idd i sacuvala u onlineOrder
+        this.onlineOrderService.find(this.idd).subscribe(
+            (res: HttpResponse<IOnlineOrder>) => {
+                this.onlineOrderItem.onlineOrder = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );

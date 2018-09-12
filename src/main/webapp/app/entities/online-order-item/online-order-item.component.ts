@@ -1,3 +1,5 @@
+import { OnlineOrderItem } from './../../shared/model/online-order-item.model';
+import { OnlineOrder } from 'app/shared/model/online-order.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
