@@ -23,6 +23,7 @@ export class OnlineOrderUpdateComponent implements OnInit, OnDestroy {
     cities: ICity[];
     mojurl: String = this.router.url;
     eventSubscriberSave: Subscription;
+    eventSubscriberPrice: Subscription;
     clients: IClient[];
 
     constructor(
@@ -36,6 +37,10 @@ export class OnlineOrderUpdateComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit() {
+        this.eventSubscriberPrice = this.eventManager.subscribe(
+            'onlineOrderTotalPrice',
+            response => (this.onlineOrder.totalPrice = response.content)
+        );
         this.eventSubscriberSave = this.eventManager.subscribe('saveOnlineOrder', response => this.save());
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ onlineOrder }) => {
@@ -102,5 +107,6 @@ export class OnlineOrderUpdateComponent implements OnInit, OnDestroy {
     }
     ngOnDestroy() {
         this.eventManager.destroy(this.eventSubscriberSave);
+        this.eventManager.destroy(this.eventSubscriberPrice);
     }
 }

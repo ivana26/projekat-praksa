@@ -20,6 +20,7 @@ export class OnlineOrderItemComponent implements OnInit, OnDestroy {
     data: LocalDataSource;
     onlineOrderid: number;
     articlePrice: number;
+    totalPrice = 0;
     settings = {
         mode: 'external',
         actions: {
@@ -79,11 +80,17 @@ export class OnlineOrderItemComponent implements OnInit, OnDestroy {
                     itemO.itemArticle = itemO.onlineArticle.name;
                     itemO.itemOrder = itemO.onlineArticle.price;
                     itemO.itemPrice = itemO.onlineArticle.price * itemO.orderedAmount;
+
                     itemO.itemOrder = itemO.onlineOrder.id;
-                    if (itemO.onlineOrder.id === this.onlineOrderid) {
-                        this.data.add(itemO);
-                    }
+                    this.totalPrice += itemO.itemPrice;
+                    console.log(this.totalPrice);
+                    this.data.add(itemO);
                 }
+
+                this.eventManager.broadcast({
+                    name: 'onlineOrderTotalPrice',
+                    content: this.totalPrice
+                });
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
