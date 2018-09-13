@@ -81,6 +81,7 @@ export class OnlineOrderUpdateComponent implements OnInit, OnDestroy {
     private onSaveSuccess() {
         this.isSaving = false;
         // this.previousState();
+        this.router.navigate(['online-order/']);
     }
 
     private onSaveError() {

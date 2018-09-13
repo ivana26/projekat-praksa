@@ -1,6 +1,7 @@
+import { onlineOrderRoute } from './../online-order/online-order.route';
 import { Article } from './../../shared/model/article.model';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable, Subscription } from 'rxjs';
 import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
@@ -30,7 +31,8 @@ export class OnlineOrderItemUpdateComponent implements OnInit {
         private articleService: ArticleService,
         private activatedRoute: ActivatedRoute,
         private eventManager: JhiEventManager,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -77,12 +79,16 @@ export class OnlineOrderItemUpdateComponent implements OnInit {
     }
 
     private subscribeToSaveResponse(result: Observable<HttpResponse<IOnlineOrderItem>>) {
-        result.subscribe((res: HttpResponse<IOnlineOrderItem>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+        result.subscribe(
+            (res: HttpResponse<IOnlineOrderItem>) => this.onSaveSuccess(event),
+            (res: HttpErrorResponse) => this.onSaveError()
+        );
     }
 
-    private onSaveSuccess() {
+    private onSaveSuccess(event) {
         this.isSaving = false;
-        this.previousState();
+        // this.previousState();
+        this.router.navigate(['online-order/' + this.idd + '/edit']);
     }
 
     private onSaveError() {
@@ -112,5 +118,30 @@ export class OnlineOrderItemUpdateComponent implements OnInit {
         if (this.onlineOrderItem.onlineArticle.price && this.onlineOrderItem.orderedAmount) {
             this.onlineOrderItem.itemPrice = this.onlineOrderItem.orderedAmount * this.onlineOrderItem.onlineArticle.price;
         }
+    }
+
+    next() {
+        this.isSaving = true;
+        if (this.onlineOrderItem.id !== undefined) {
+            this.subscribeToSaveResponseNext(this.onlineOrderItemService.update(this.onlineOrderItem));
+        } else {
+            this.subscribeToSaveResponseNext(this.onlineOrderItemService.create(this.onlineOrderItem));
+        }
+    }
+
+    private subscribeToSaveResponseNext(result: Observable<HttpResponse<IOnlineOrderItem>>) {
+        result.subscribe((res: HttpResponse<IOnlineOrderItem>) => this.onSaveSuccess1(), (res: HttpErrorResponse) => this.onSaveError1());
+    }
+
+    private onSaveSuccess1() {
+        this.isSaving = false;
+        this.router
+            .navigateByUrl('', { skipLocationChange: true })
+            .then(() => this.router.navigate(['online-order/' + this.idd + '/online-order-item/new']));
+        // this.router.navigate(['online-order/' + this.idd + '/online-order-item/new']);
+    }
+
+    private onSaveError1() {
+        this.isSaving = false;
     }
 }
