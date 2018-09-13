@@ -1,3 +1,4 @@
+import { BrezaDeliveryOrderModule } from './delivery-order/delivery-order.module';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { BrezaArticleModule } from './article/article.module';
@@ -24,7 +25,8 @@ import { BrezaOnlineOrderItemModule } from './online-order-item/online-order-ite
         BrezaTypeModule,
         BrezaVehicleModule,
         BrezaOnlineOrderModule,
-        BrezaOnlineOrderItemModule
+        BrezaOnlineOrderItemModule,
+        BrezaDeliveryOrderModule
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],
